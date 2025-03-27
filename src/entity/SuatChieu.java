@@ -2,39 +2,39 @@ package entity;
 import java.time.LocalDateTime;
 
 public class SuatChieu {
-    private String maSuatChieu;
-    private String maPhim;
-    private String maPhong;
+    private int maSuatChieu;
+    private int maPhim;
+    private int maPhong;
     private LocalDateTime ngayGioChieu;
 
-    public SuatChieu(String maSuatChieu, String maPhim, String maPhong, LocalDateTime ngayGioChieu) {
+    public SuatChieu(int maSuatChieu, int maPhim, int maPhong, LocalDateTime ngayGioChieu) {
         this.maSuatChieu = maSuatChieu;
         this.maPhim = maPhim;
         this.maPhong = maPhong;
         this.ngayGioChieu = ngayGioChieu;
     }
 
-    public String getMaSuatChieu() {
+    public int getMaSuatChieu() {
         return maSuatChieu;
     }
 
-    public void setMaSuatChieu(String maSuatChieu) {
+    public void setMaSuatChieu(int maSuatChieu) {
         this.maSuatChieu = maSuatChieu;
     }
 
-    public String getMaPhim() {
+    public int getMaPhim() {
         return maPhim;
     }
 
-    public void setMaPhim(String maPhim) {
+    public void setMaPhim(int maPhim) {
         this.maPhim = maPhim;
     }
 
-    public String getMaPhong() {
+    public int getMaPhong() {
         return maPhong;
     }
 
-    public void setMaPhong(String maPhong) {
+    public void setMaPhong(int maPhong) {
         this.maPhong = maPhong;
     }
 

@@ -19,8 +19,12 @@ public class VeDAO {
         String sql = "SELECT * FROM Ve";
         try (Statement stmt = conn.createStatement(); ResultSet rs = stmt.executeQuery(sql)) {
             while (rs.next()) {
-                list.add(new Ve(rs.getString("maVe"), rs.getString("maSuatChieu"), rs.getString("maKhachHang"),
-                        rs.getString("soGhe"), rs.getDouble("giaVe")));
+                list.add(new Ve(
+                        rs.getInt("maVe"),
+                        rs.getInt("maSuatChieu"),
+                        rs.getInt("maKhachHang"),
+                        rs.getString("soGhe"),
+                        rs.getDouble("giaVe")));
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -31,11 +35,11 @@ public class VeDAO {
     public boolean suaVe(Ve ve) {
         String sql = "UPDATE Ve SET maSuatChieu=?, maKhachHang=?, soGhe=?, giaVe=? WHERE maVe=?";
         try (PreparedStatement stmt = conn.prepareStatement(sql)) {
-            stmt.setString(1, ve.getMaSuatChieu());
-            stmt.setString(2, ve.getMaKhachHang());
+            stmt.setInt(1, ve.getMaSuatChieu());
+            stmt.setInt(2, ve.getMaKhachHang());
             stmt.setString(3, ve.getSoGhe());
             stmt.setDouble(4, ve.getGiaVe());
-            stmt.setString(5, ve.getMaVe());
+            stmt.setInt(5, ve.getMaVe());
             return stmt.executeUpdate() > 0;
         } catch (SQLException e) {
             e.printStackTrace();

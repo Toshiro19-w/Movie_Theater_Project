@@ -1,13 +1,13 @@
 package entity;
 
 public class Ve {
-    private String maVe;
-    private String maSuatChieu;
-    private String maKhachHang;
+    private int maVe;
+    private int maSuatChieu;
+    private int maKhachHang;
     private String soGhe;
     private double giaVe;
 
-    public Ve(String maVe, String maSuatChieu, String maKhachHang, String soGhe, double giaVe) {
+    public Ve(int maVe, int maSuatChieu, int maKhachHang, String soGhe, double giaVe) {
         this.maVe = maVe;
         this.maSuatChieu = maSuatChieu;
         this.maKhachHang = maKhachHang;
@@ -15,27 +15,27 @@ public class Ve {
         this.giaVe = giaVe;
     }
 
-    public String getMaVe() {
+    public int getMaVe() {
         return maVe;
     }
 
-    public void setMaVe(String maVe) {
+    public void setMaVe(int maVe) {
         this.maVe = maVe;
     }
 
-    public String getMaSuatChieu() {
+    public int getMaSuatChieu() {
         return maSuatChieu;
     }
 
-    public void setMaSuatChieu(String maSuatChieu) {
+    public void setMaSuatChieu(int maSuatChieu) {
         this.maSuatChieu = maSuatChieu;
     }
 
-    public String getMaKhachHang() {
+    public int getMaKhachHang() {
         return maKhachHang;
     }
 
-    public void setMaKhachHang(String maKhachHang) {
+    public void setMaKhachHang(int maKhachHang) {
         this.maKhachHang = maKhachHang;
     }
 
@@ -51,7 +51,8 @@ public class Ve {
         return giaVe;
     }
 
-    public void setGiaVe(double giaVe) {
+    public void setGiaVe(double
+                                 giaVe) {
         this.giaVe = giaVe;
     }
 }

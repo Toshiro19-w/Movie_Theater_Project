@@ -2,15 +2,15 @@ package entity;
 import java.time.LocalDateTime;
 
 public class DatVe {
-    private String maDatVe;
-    private String maKhachHang;
-    private String maSuatChieu;
-    private String maVe;
+    private int maDatVe;
+    private int maKhachHang;
+    private int maSuatChieu;
+    private int maVe;
     private int soLuong;
     private double tongTien;
     private LocalDateTime ngayDat;
 
-    public DatVe(String maDatVe, String maKhachHang, String maSuatChieu, String maVe, int soLuong, double tongTien, LocalDateTime ngayDat) {
+    public DatVe(int maDatVe, int maKhachHang, int maSuatChieu, int maVe, int soLuong, double tongTien, LocalDateTime ngayDat) {
         this.maDatVe = maDatVe;
         this.maKhachHang = maKhachHang;
         this.maSuatChieu = maSuatChieu;
@@ -20,35 +20,35 @@ public class DatVe {
         this.ngayDat = ngayDat;
     }
 
-    public String getMaDatVe() {
+    public int getMaDatVe() {
         return maDatVe;
     }
 
-    public void setMaDatVe(String maDatVe) {
+    public void setMaDatVe(int maDatVe) {
         this.maDatVe = maDatVe;
     }
 
-    public String getMaKhachHang() {
+    public int getMaKhachHang() {
         return maKhachHang;
     }
 
-    public void setMaKhachHang(String maKhachHang) {
+    public void setMaKhachHang(int maKhachHang) {
         this.maKhachHang = maKhachHang;
     }
 
-    public String getMaSuatChieu() {
+    public int getMaSuatChieu() {
         return maSuatChieu;
     }
 
-    public void setMaSuatChieu(String maSuatChieu) {
+    public void setMaSuatChieu(int maSuatChieu) {
         this.maSuatChieu = maSuatChieu;
     }
 
-    public String getMaVe() {
+    public int getMaVe() {
         return maVe;
     }
 
-    public void setMaVe(String maVe) {
+    public void setMaVe(int maVe) {
         this.maVe = maVe;
     }
 

@@ -2,7 +2,7 @@ package entity;
 import java.time.LocalDate;
 
 public class Phim {
-    private String maPhim;
+    private int maPhim;
     private String tenPhim;
     private int thoiLuong;
     private LocalDate ngayKhoiChieu;
@@ -13,7 +13,7 @@ public class Phim {
     private String dienVien;
     private int gioiHanTuoi;
 
-    public Phim(String maPhim, String tenPhim, int thoiLuong, LocalDate ngayKhoiChieu, String ngonNgu,
+    public Phim(int maPhim, String tenPhim, int thoiLuong, LocalDate ngayKhoiChieu, String ngonNgu,
                 String dinhDang, String moTa, String daoDien, String dienVien, int gioiHanTuoi) {
         this.maPhim = maPhim;
         this.tenPhim = tenPhim;
@@ -27,11 +27,11 @@ public class Phim {
         this.gioiHanTuoi = gioiHanTuoi;
     }
 
-    public String getMaPhim() {
+    public int getMaPhim() {
         return maPhim;
     }
 
-    public void setMaPhim(String maPhim) {
+    public void setMaPhim(int maPhim) {
         this.maPhim = maPhim;
     }
 

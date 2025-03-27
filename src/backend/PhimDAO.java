@@ -19,7 +19,7 @@ public class PhimDAO {
         String sql = "SELECT * FROM Phim";
         try (Statement stmt = conn.createStatement(); ResultSet rs = stmt.executeQuery(sql)) {
             while (rs.next()) {
-                list.add(new Phim(rs.getString("maPhim"), rs.getString("tenPhim"), rs.getInt("thoiLuong"),
+                list.add(new Phim(rs.getInt("maPhim"), rs.getString("tenPhim"), rs.getInt("thoiLuong"),
                         rs.getDate("ngayKhoiChieu").toLocalDate(), rs.getString("ngonNgu"), rs.getString("dinhDang"),
                         rs.getString("moTa"), rs.getString("daoDien"), rs.getString("dienVien"),
                         rs.getInt("gioiHanTuoi")));
@@ -33,7 +33,7 @@ public class PhimDAO {
     public boolean themPhim(Phim phim) {
         String sql = "INSERT INTO Phim VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         try (PreparedStatement stmt = conn.prepareStatement(sql)) {
-            stmt.setString(1, phim.getMaPhim());
+            stmt.setInt(1, phim.getMaPhim());
             stmt.setString(2, phim.getTenPhim());
             stmt.setInt(3, phim.getThoiLuong());
             stmt.setString(4, String.valueOf(phim.getNgayKhoiChieu()));
@@ -62,7 +62,7 @@ public class PhimDAO {
             stmt.setString(7, phim.getDaoDien());
             stmt.setString(8, phim.getDienVien());
             stmt.setInt(9, phim.getGioiHanTuoi());
-            stmt.setString(10, phim.getMaPhim());
+            stmt.setInt(10, phim.getMaPhim());
             return stmt.executeUpdate() > 0;
         } catch (SQLException e) {
             e.printStackTrace();

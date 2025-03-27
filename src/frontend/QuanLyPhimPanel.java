@@ -51,7 +51,7 @@ public class QuanLyPhimPanel extends JPanel {
             return;
         }
 
-        String maPhim = (String) model.getValueAt(selectedRow, 0);
+        int maPhim = (int) model.getValueAt(selectedRow, 0);
         String tenPhim = JOptionPane.showInputDialog(this, "Nhập tên phim mới:", model.getValueAt(selectedRow, 1));
         if (tenPhim == null || tenPhim.trim().isEmpty()) return;
 

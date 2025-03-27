@@ -1,42 +1,73 @@
 package frontend;
 
+import com.formdev.flatlaf.FlatLightLaf;
 import entity.TaiKhoan;
+import backend.TaiKhoanDAO;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
-import backend.*;
 
 public class LoginPanel extends JFrame {
     private final JTextField txtUsername;
     private final JPasswordField txtPassword;
-    TaiKhoanDAO taiKhoanDAO = new TaiKhoanDAO();
-    QuanLyPhimPanel quanLyPhimPanel = new QuanLyPhimPanel();
+    private final TaiKhoanDAO taiKhoanDAO = new TaiKhoanDAO();
 
     public LoginPanel() {
+        // Áp dụng FlatLaf Material Design
+        try {
+            UIManager.setLookAndFeel(new FlatLightLaf());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
         setTitle("Đăng nhập");
-        setSize(900, 600);
+        setSize(400, 500);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
-        setLayout(new GridLayout(4, 2, 100, 50));
+        setLayout(new BorderLayout());
+
+        // Tạo panel chính
+        JPanel panelMain = new JPanel();
+        panelMain.setLayout(new BoxLayout(panelMain, BoxLayout.Y_AXIS));
+        panelMain.setBorder(BorderFactory.createEmptyBorder(30, 40, 30, 40)); // Padding
+
+        JLabel lblTitle = new JLabel("Đăng Nhập", SwingConstants.CENTER);
+        lblTitle.setFont(new Font("Arial", Font.BOLD, 22));
 
         JLabel lblUsername = new JLabel("Tài khoản:");
+        txtUsername = new JTextField(15);
         JLabel lblPassword = new JLabel("Mật khẩu:");
-        txtUsername = new JTextField();
-        txtPassword = new JPasswordField();
+        txtPassword = new JPasswordField(15);
+
         JButton btnLogin = new JButton("Đăng nhập");
         JButton btnDangKy = new JButton("Đăng Ký");
 
-        btnDangKy.addActionListener(this::dangKyTaiKhoan);
-        btnLogin.addActionListener(e -> checkLogin());
+        // Thiết lập kiểu dáng nút
+        btnLogin.setFont(new Font("Arial", Font.BOLD, 14));
+        btnLogin.setBackground(new Color(33, 150, 243));
+        btnLogin.setForeground(Color.WHITE);
+        btnDangKy.setFont(new Font("Arial", Font.BOLD, 14));
+        btnDangKy.setBackground(new Color(76, 175, 80));
+        btnDangKy.setForeground(Color.WHITE);
 
-        add(lblUsername);
-        add(txtUsername);
-        add(lblPassword);
-        add(txtPassword);
-        add(btnLogin);
-        add(new JLabel());
-        add(btnDangKy);
+        // Căn giữa nội dung
+        panelMain.add(lblTitle);
+        panelMain.add(Box.createVerticalStrut(20));
+        panelMain.add(lblUsername);
+        panelMain.add(txtUsername);
+        panelMain.add(Box.createVerticalStrut(10));
+        panelMain.add(lblPassword);
+        panelMain.add(txtPassword);
+        panelMain.add(Box.createVerticalStrut(20));
+        panelMain.add(btnLogin);
+        panelMain.add(Box.createVerticalStrut(10));
+        panelMain.add(btnDangKy);
+
+        btnLogin.addActionListener(e -> checkLogin());
+        btnDangKy.addActionListener(this::dangKyTaiKhoan);
+
+        add(panelMain, BorderLayout.CENTER);
         setVisible(true);
     }
 
@@ -45,11 +76,10 @@ public class LoginPanel extends JFrame {
         String password = new String(txtPassword.getPassword());
 
         if (username.equals("admin") && password.equals("123")) {
-            dispose(); // Đóng cửa sổ đăng nhập
-            SwingUtilities.invokeLater(() -> new MainGUI().setVisible(true)); // Mở MainGUI admin
+            dispose();
+            SwingUtilities.invokeLater(() -> new MainGUI().setVisible(true));
         } else if (username.isEmpty() || password.isEmpty()) {
             JOptionPane.showMessageDialog(this, "Vui lòng nhập đầy đủ thông tin!");
-            return;
         } else {
             JOptionPane.showMessageDialog(this, "Sai tài khoản hoặc mật khẩu!", "Lỗi", JOptionPane.ERROR_MESSAGE);
         }
@@ -62,7 +92,7 @@ public class LoginPanel extends JFrame {
 
         Object[] message = {
                 "Tên Đăng Nhập:", txtTenDangNhap,
-                "Mật Khẩu (Tối thiểu 6 ký tự):", txtMatKhau,
+                "Mật Khẩu:", txtMatKhau,
                 "Xác Nhận Mật Khẩu:", txtXacNhanMatKhau
         };
 
@@ -89,12 +119,11 @@ public class LoginPanel extends JFrame {
 
             TaiKhoan tk = new TaiKhoan(tenDangNhap, matKhau, "user");
             if (taiKhoanDAO.dangKyTaiKhoan(tk)) {
-                JOptionPane.showMessageDialog(this, "Đăng ký tài khoản thành công!");
+                JOptionPane.showMessageDialog(this, "Đăng ký thành công!");
                 dispose();
-                SwingUtilities.invokeLater(() -> new MainGUI().setVisible(true)); // mở GUI cho user
-                quanLyPhimPanel.loadData();
+                SwingUtilities.invokeLater(() -> new MainGUI().setVisible(true));
             } else {
-                JOptionPane.showMessageDialog(this, "Tên đăng nhập đã tồn tại. Hãy thử tên khác!");
+                JOptionPane.showMessageDialog(this, "Tên đăng nhập đã tồn tại!");
             }
         }
     }
